@@ -47,6 +47,21 @@ header.shrunk {
     -webkit-backdrop-filter: blur(10px);
 }
 
+/* Ẩn thanh công cụ mặc định của Google để web đẹp hơn */
+/* .goog-te-banner-frame.skiptranslate, 
+.goog-te-gadget {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
+} */
+
 /* style.css */
 .reveal {
     opacity: 0;

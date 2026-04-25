@@ -1,4 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
+// 1. Hàm khởi tạo bắt buộc cho Google API
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'vi',
+            includedLanguages: 'en,vi',
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+
+    // 2. Tích hợp Script Google API một cách đồng bộ
+    (function() {
+        var gt = document.createElement('script');
+        gt.type = 'text/javascript';
+        gt.async = true;
+        gt.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gt, s);
+    })();
+
+    // 3. Logic điều khiển Switcher
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'languageSwitcher') {
+            e.target.addEventListener('change', function() {
+                var lang = this.value;
+                var googleCombo = document.querySelector('.goog-te-combo');
+                if (googleCombo) {
+                    googleCombo.value = lang;
+                    googleCombo.dispatchEvent(new Event('change'));
+                } else {
+                    console.error("Google Translate chưa tải xong, vui lòng đợi 1 giây.");
+                }
+            });
+        }
+    });
+    
     // main.js
     // --- LOGIC REVEAL ON SCROLL (TỐI ƯU & LẶP LẠI) ---
 const initReveal = () => {
